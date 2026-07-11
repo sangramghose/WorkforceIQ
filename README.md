@@ -1,26 +1,58 @@
+<div align="center">
+
 # Workforce & Industry Trend Analyzer
+
+**A full analytics pipeline — from raw data to predictive models to dashboards people actually open.**
 
 ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Machine%20Learning-F7931E?logo=scikit-learn&logoColor=white)
 ![NLTK](https://img.shields.io/badge/NLTK-NLP-4B8BBE)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Wrangling-150458?logo=pandas&logoColor=white)
 ![Tableau](https://img.shields.io/badge/Tableau-Dashboards-E97627?logo=tableau&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Viz-3F4F75?logo=plotly&logoColor=white)
 ![Power Automate](https://img.shields.io/badge/Power%20Automate-Workflow-0066FF?logo=microsoftpowerautomate&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+![Status](https://img.shields.io/badge/Status-Actively%20Maintained-success)
 
-An end-to-end analytics pipeline that turns raw workforce, automotive, and call-center data into predictive insights and dashboards people actually use. It started as an attempt to stop building HR reports by hand every week — it grew into a small ecosystem of ML models, SQL, and dashboards that talk to each other.
+</div>
+
+---
+
+### Table of contents
+
+1. [Why this exists](#why-this-exists)
+2. [What this project actually does](#what-this-project-actually-does)
+3. [How it fits together](#how-it-fits-together)
+4. [The three dashboards](#the-three-dashboards)
+5. [The machine learning layer](#the-machine-learning-layer)
+6. [Interactive dashboards, no server required](#interactive-dashboards-no-server-required)
+7. [Getting started](#getting-started)
+8. [Repository structure](#repository-structure)
+9. [Tech stack](#tech-stack)
+10. [Design decisions worth knowing about](#design-decisions-worth-knowing-about)
+11. [What I'd build next](#what-id-build-next)
+12. [Notes on the data](#notes-on-the-data)
+13. [Contact](#contact)
+
+---
+
+## Why this exists
+
+Every HR team eventually hits the same wall: attrition data lives in one spreadsheet, sentiment gets tracked (if at all) in another, and by the time someone notices a pattern, the pattern has already cost them a few good employees. This project started as a way to stop assembling that HR report by hand every week, and turned into something closer to a small internal analytics platform — data cleaning, three ML models, SQL, and dashboards that all talk to each other instead of living as disconnected files.
+
+The goal wasn't to build the fanciest model. It was to build something that starts from messy raw data and ends with a stakeholder-ready dashboard, without a human manually stitching the steps together in between.
 
 ---
 
 ## What this project actually does
 
-Three real business problems, one pipeline:
+Three real business questions, one connected pipeline:
 
 - **Will this employee leave?** A Random Forest model trained on 50,000 employee records flags attrition risk before it becomes a resignation letter.
-- **Who are our employees, really?** K-Means clustering groups the workforce into behavioral segments — including one small, high-risk, low-satisfaction cohort that HR wouldn't have found by eyeballing a spreadsheet.
-- **Are customers actually happy on our calls?** VADER sentiment analysis runs over thousands of call transcripts and turns "we think service is fine" into a number you can track over time.
+- **Who are our employees, really?** K-Means clustering groups the workforce into behavioral segments — including one small, high-risk, low-satisfaction cohort that wouldn't show up from just eyeballing a spreadsheet.
+- **Are customers actually happy on our calls?** VADER sentiment analysis runs over thousands of call transcripts and turns "we think service is fine" into a number you can actually track over time.
 
-The output isn't just CSVs sitting in a folder — it feeds Tableau and Plotly dashboards, and a Power Automate flow that used to be a person's Tuesday morning.
+The output isn't CSVs sitting in a folder waiting to be forgotten — it feeds Tableau and Plotly dashboards, plus a Power Automate flow that replaced what used to be someone's Tuesday morning.
 
 ---
 
@@ -51,6 +83,8 @@ Visualization & Delivery
    └── Power Automate → Scheduled Stakeholder Emails
 ```
 
+Each stage writes its output to disk before the next one picks it up, so any layer — the cleaning script, a model, a dashboard — can be re-run or swapped independently without breaking the rest of the pipeline.
+
 ---
 
 ## The three dashboards
@@ -74,12 +108,14 @@ Visualization & Delivery
 ### Attrition Prediction + Employee Segmentation
 `ml_models/workforce_ml_pipeline.py`
 
-A Random Forest classifier trained on 50,000 synthetic employee records, with satisfaction score, tenure, overtime, and commute distance coming out as the strongest predictors. Each employee gets an attrition probability, a binary prediction, and a cluster segment — so instead of guessing who's a flight risk, HR can point retention efforts at the top 5% and skip the rest.
+A Random Forest classifier trained on 50,000 synthetic employee records, with satisfaction score, tenure, overtime, and commute distance coming out as the strongest predictors. Each employee gets an attrition probability, a binary prediction, and a cluster segment — so instead of guessing who's a flight risk, HR can point retention efforts at the highest-risk group and skip the rest.
+
+K-Means then groups the same workforce into four behavioral personas based on satisfaction, workload, and engagement signals. One of those clusters — small, low-satisfaction, high-overtime — turns out to be disproportionately responsible for predicted attrition, which is exactly the kind of pattern that's invisible until you cluster for it.
 
 ### Call-Center Sentiment Analysis
 `ml_models/callcenter_sentiment.py`
 
-VADER sentiment scoring applied to 10,000 synthetic call transcripts, landing around 92% agreement with ground-truth labels. Every call gets a compound sentiment score and a category (Positive / Neutral / Negative), making it possible to spot a sentiment dip before it shows up in a customer satisfaction survey three weeks later.
+VADER sentiment scoring applied to 10,000 synthetic call transcripts, landing around 92% agreement with ground-truth labels. Every call gets a compound sentiment score and a category (Positive / Neutral / Negative), which makes it possible to spot a sentiment dip in near real time instead of waiting three weeks for it to show up in a satisfaction survey.
 
 ---
 
@@ -159,6 +195,24 @@ Workforce-and-Industry-Trend-Analyzer/
 | Visualization | Tableau, Plotly |
 | Automation | Power Automate, Outlook API |
 | Delivery | Plotly HTML, Tableau Server / Public |
+
+---
+
+## Design decisions worth knowing about
+
+A few choices that weren't obvious at first but shaped the final structure:
+
+- **Random Forest over a black-box model.** Feature importance was more valuable here than squeezing out an extra percentage point of accuracy — HR needs to know *why* someone is flagged as a risk, not just that they are.
+- **Plotly dashboards alongside Tableau, not instead of it.** Tableau is great for stakeholders who already live in it; the HTML dashboards exist so anyone can open a result without a Tableau license or server access.
+- **Every stage writes to disk.** Scored CSVs are treated as a contract between pipeline stages. It's less elegant than an in-memory pipeline, but it means any single step can be debugged or re-run in isolation.
+
+---
+
+## What I'd build next
+
+- Swap the static CSV inputs for a scheduled ingestion job, so the models retrain on a rolling window instead of a one-time snapshot.
+- Add a lightweight model-monitoring layer to track prediction drift over time.
+- Extend the sentiment model beyond VADER's lexicon-based scoring to a fine-tuned transformer for higher accuracy on sarcasm and mixed-sentiment calls.
 
 ---
 
