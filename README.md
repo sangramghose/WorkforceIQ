@@ -1,105 +1,68 @@
+# Workforce & Industry Trend Analyzer
 
-# Tableau Projects ![icons8-tableau-software-48](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/5324eb1a-8bb8-405f-ae23-5988bcfdd675)
+![Tableau](https://img.shields.io/badge/Tableau-Visualization-blue) ![Python](https://img.shields.io/badge/Python-ML/NLP-yellow) ![Plotly](https://img.shields.io/badge/Plotly-Dashboards-orange)
 
+A complete analytics portfolio combining **interactive Tableau dashboards** with a **machine learning pipeline** and **browser‑based dashboards** – all centered on workforce trends, automotive sales, and call‑center operations.
 
-This repository contains Tableau dashboard, visualization, and data analysis projects I have created.
+---
 
-## Analyzing Employee Trends
+## 📊 Tableau Dashboards
 
- [Analyzing Employee Trends.twbx](Analyzing Employee Trends Dashboard.png)
+This repository contains three Tableau dashboards built for HR, automotive, and call‑center data.
 
- ## Project Description
+### 1. Analyzing Employee Trends
+[Analyzing Employee Trends.twbx](Analyzing%20Employee%20Trends/Analyzing%20Employee%20Trends%20Dashboard.png)
 
- This interactive Tableau dashboard was created to visualize and analyze HR data to derive insights into the employee base. The key goals were to:
- 
- - Provide analysis of employee distribution across business units and roles
- - Identify trends in demographics like age, gender, education level
- - Evaluate employee satisfaction and engagement metrics
- - Analyze factors related to employee attrition and turnover
- - Enable data-driven decision making around HR initiatives
+- Employee distribution across business units, roles, age, gender, education  
+- Satisfaction & engagement trends, attrition by demographic and job factors  
+- Compensation analysis and HR KPIs  
 
-The dashboard brings together employee data from various HR systems into a unified view. It allows slicing and dicing the data by departments, demographics, job attributes and other dimensions.
+![Employee Dashboard](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/f7622138-227d-488e-8fa0-576dba6c6372)
 
-Some key visualizations include:
+### 2. Exploring Trends in the Automotive Industry
+[Exploring Trends in the Automotive Industry.twbx](Exploring%20Trends%20in%20the%20Automotive%20Industry/Exploring%20Trends%20in%20the%20Automotive%20Industry.png)
 
-- Headcount and demographics analysis
-- Employee spread by business unit, job function
-- Satisfaction scoring trends over time
-- Attrition rates by age, gender, job role
-- Compensation and performance analysis
-- HR KPIs and metrics
+- Used‑car sales trends, pricing by fuel type, transmission, ownership  
+- Mileage‑age‑price correlation, dealer and owner‑type volume  
+- Future price forecasting  
 
-![Tableau Dashboard](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/f7622138-227d-488e-8fa0-576dba6c6372)
+![Automotive Dashboard](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/66894295-1d4a-414f-a8d7-0ce85ed178e8)
 
-## Exploring Trends in the Automotive Industry
+### 3. CallCenter Data Analysis
+[CallCenter Data Analysis.twbx](CallCenter_Data%20Analysis/Callcenter%20Data%20Analysis.png)
 
- [Exploring Trends in the Automotive Industry.twbx](Exploring Trends in the Automotive Industry.png)
+- Call volume, sentiment, complaint‑type breakdowns  
+- Response time vs. SLA, channel comparison (phone, email, chat, web)  
+- Performance by location  
 
- ## Project Description
+![CallCenter Dashboard](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/bb7c3dfc-9b86-4f96-9e41-b6212e546aa7)
 
- This project involved creating an interactive Tableau dashboard to visualize and analyze used car sales data. The key goals were to:
+---
 
-- Provide insights into sales trends over time
-- Compare performance by transmission, fuel type, ownership etc.
-- Analyze sales and pricing by different car segments
-- Identify relationships between mileage, age and pricing
-- Enable data-driven decision making for inventory, pricing and marketing
+## 🧠 Machine Learning Pipeline (`ml_models/`)
 
-The dashboard combines used car listing data from various sources. It allows slicing and dicing - the data by relevant dimensions using filters and parameters.
+Two Python scripts that generate synthetic data, train models, and export scored datasets for BI integration.
 
-Key visualizations include:
+| Script | Techniques | Outputs |
+|--------|------------|---------|
+| `workforce_ml_pipeline.py` | Random Forest (attrition prediction), K‑Means clustering | `workforce_with_ml_results.csv` (attrition prob, predicted flag, segment) |
+| `callcenter_sentiment.py` | VADER sentiment analysis (NLP) | `callcenter_sentiment.csv` (vader compound score, sentiment label) |
 
-- Sales price trends over time
-- Analysis of average pricing, mileage by fuel type, transmission
-- Used car volume by dealer type, owner types
-- Correlation analysis between pricing factors
-- Forecasting of future pricing based on trends
+**Requirements:** `pip install pandas numpy scikit-learn joblib nltk`
 
-![Tableau Dashboard](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/66894295-1d4a-414f-a8d7-0ce85ed178e8)
+Run them once to produce the CSV files used by the dashboards.
 
-## CallCenter Data Analysis
+---
 
- [CallCenter Data Analysis.twbx](Callcenter Data Analysis.png)
+## 📈 ML‑Powered Interactive Dashboards (`ml_dashboards/`)
 
- ## Project Description
+Browser‑based dashboards built with **Plotly**, driven directly by the ML outputs. No Tableau required – just open the `.html` files.
 
- This project involved creating an interactive Tableau dashboard to visualize and analyze call center data. The key goals were to:
+- **attrition_dashboard.html** – Attrition probability distribution, risk by department, feature importance, high‑risk employees by segment
+- **employee_segments_dashboard.html** – Segment profiles, satisfaction vs. risk, salary comparison, departmental composition
+- **callcenter_sentiment_dashboard.html** – Sentiment pie, top words (example), compound score scatter and histogram
 
-- Provide insights into call volume, sentiment, and complaint types
-- Identify trends in response time and service level adherence
-- Compare performance across different channels and locations
-- Enable data-driven decision making for call center operations
-
-The dashboard combines data from call logs, transcripts, surveys, and other sources. It utilizes various charts, metrics, and filters to slice the data by relevant dimensions.
-
-Key visualizations include:
-
-- Call volume and sentiment breakdowns
-- Analysis of call drivers by most common complaint reasons
-- Response time analysis against service level agreements
-- Call center volume and performance by location
-- Channel analysis comparing call center, email, chat, and web
-
- ![CallCenter_Data Analysis](https://github.com/swaapnaa/TABLEAU-PROJECTS/assets/149737403/bb7c3dfc-9b86-4f96-9e41-b6212e546aa7)
-
-## About Tableau
-
-Tableau is a powerful data visualization and business intelligence tool. Some key features:
-
-- Drag and drop interface to build interactive dashboards 
-
-- Broad data connectivity to combine data sources 
-
-- Diverse visualization types including maps, charts, graphs etc.
-
-- Smart analytics with trendlines, forecasting, clustering etc.
-
-- Sharing capabilities for visualizations and dashboards
-
-## How to Use
-
-1. Download and install Tableau Desktop
-2. Download the .twbx file for any project
-3. Open the file in Tableau to interact with the visualizations
-4. Connect to your own data sources to create custom dashboards
-
+To regenerate the dashboards:  
+```bash
+cd ml_dashboards
+python generate_dashboards.py
