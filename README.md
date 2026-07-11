@@ -1,112 +1,98 @@
-```markdown
-# 🚀 Workforce & Industry Trend Analyzer
+# Workforce & Industry Trend Analyzer
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
-![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?logo=scikit-learn)
-![NLTK](https://img.shields.io/badge/NLTK-NLP-green)
-![Tableau](https://img.shields.io/badge/Tableau-Visualization-lightblue?logo=tableau)
-![Plotly](https://img.shields.io/badge/Plotly-Dashboards-purple?logo=plotly)
-![Power Automate](https://img.shields.io/badge/Power%20Automate-Ready-blue?logo=microsoft)
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?logo=python&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Machine%20Learning-F7931E?logo=scikit-learn&logoColor=white)
+![NLTK](https://img.shields.io/badge/NLTK-NLP-4B8BBE)
+![Tableau](https://img.shields.io/badge/Tableau-Dashboards-E97627?logo=tableau&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Viz-3F4F75?logo=plotly&logoColor=white)
+![Power Automate](https://img.shields.io/badge/Power%20Automate-Workflow-0066FF?logo=microsoftpowerautomate&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-> **An end‑to‑end, AI‑powered analytics ecosystem** that transforms raw workforce, automotive, and call‑center data into **predictive insights and interactive executive dashboards**. Built to eliminate manual reporting, surface hidden patterns, and drive data‑driven decisions.
-
----
-
-## 📌 Key Achievements at a Glance
-
-- 🔮 **Predicted employee attrition** with **85%+ accuracy** using Random Forest, enabling proactive retention strategies.  
-- 🧩 **Segmented 50,000 employees** into 4 distinct behavioral clusters via K‑Means, uncovering a high‑risk, low‑satisfaction cohort.  
-- 💬 **Analyzed 10,000+ call transcripts** with NLP (VADER) to quantify customer sentiment and pinpoint service breakdowns.  
-- ⚡ **Automated a full reporting pipeline** (Python + SQL + Power Automate), cutting manual effort by **~4 hours per cycle**.  
-- 📊 **Designed 5+ interactive dashboards** (Tableau & Plotly) that deliver real‑time, drill‑down insights to stakeholders.
+An end-to-end analytics pipeline that turns raw workforce, automotive, and call-center data into predictive insights and dashboards people actually use. It started as an attempt to stop building HR reports by hand every week — it grew into a small ecosystem of ML models, SQL, and dashboards that talk to each other.
 
 ---
 
-## 🧱 Architecture
+## What this project actually does
+
+Three real business problems, one pipeline:
+
+- **Will this employee leave?** A Random Forest model trained on 50,000 employee records flags attrition risk before it becomes a resignation letter.
+- **Who are our employees, really?** K-Means clustering groups the workforce into behavioral segments — including one small, high-risk, low-satisfaction cohort that HR wouldn't have found by eyeballing a spreadsheet.
+- **Are customers actually happy on our calls?** VADER sentiment analysis runs over thousands of call transcripts and turns "we think service is fine" into a number you can track over time.
+
+The output isn't just CSVs sitting in a folder — it feeds Tableau and Plotly dashboards, and a Power Automate flow that used to be a person's Tuesday morning.
+
+---
+
+## How it fits together
 
 ```
- Raw Data (Excel/CSV)
+Raw Data (Excel / CSV)
         │
         ▼
-┌─────────────────────────────────────────────┐
-│  Data Ingestion & Cleaning (Pandas, NumPy)   │
-└─────────────────────┬───────────────────────┘
-                      │
-        ┌─────────────▼─────────────┐
-        │  SQL Database (Analytics) │
-        └─────────────┬─────────────┘
-                      │
-        ┌─────────────▼─────────────────────────────┐
-        │  Machine Learning Layer (Python)           │
-        │  • Random Forest – Attrition Prediction    │
-        │  • K‑Means – Employee Segmentation         │
-        │  • VADER – Call‑Center Sentiment Analysis  │
-        └─────────────┬─────────────────────────────┘
-                      │
-        ┌─────────────▼─────────────────────────────┐
-        │  Output CSVs (scored data)                 │
-        └─────────────┬─────────────────────────────┘
-                      │
-        ┌─────────────▼─────────────────────────────┐
-        │  Visualization & Distribution              │
-        │  • Tableau Dashboards                      │
-        │  • Plotly HTML Dashboards (browser)        │
-        │  • Power Automate → Email to Stakeholders  │
-        └───────────────────────────────────────────┘
+Data Cleaning & Prep (Pandas, NumPy)
+        │
+        ▼
+SQL Database (Analytics Layer)
+        │
+        ▼
+Machine Learning Layer
+   ├── Random Forest   → Attrition Prediction
+   ├── K-Means         → Employee Segmentation
+   └── VADER           → Call-Center Sentiment
+        │
+        ▼
+Scored Output (CSVs)
+        │
+        ▼
+Visualization & Delivery
+   ├── Tableau Dashboards
+   ├── Plotly HTML Dashboards (browser, zero install)
+   └── Power Automate → Scheduled Stakeholder Emails
 ```
 
 ---
 
-## 📂 Project Breakdown
+## The three dashboards
 
-### 1. Tableau Dashboards (BI Layer)
+| Dashboard | What it's for | The question it answers |
+|---|---|---|
+| **Analyzing Employee Trends** | HR analytics | Where is turnover concentrated, and which groups are most engaged? |
+| **Automotive Industry Trends** | Sales & pricing | How do mileage, fuel type, and ownership history move used-car prices? |
+| **CallCenter Data Analysis** | Operations | Are SLAs being met, and which channels are quietly underperforming? |
 
-Three production‑ready, filter‑rich Tableau workbooks that answer the most critical business questions.
+**Previews:**
 
-| Dashboard | Focus | Business Question |
-|-----------|-------|-------------------|
-| **Analyzing Employee Trends** | HR Analytics | Where is turnover highest? Which demographics are most engaged? |
-| **Automotive Industry Trends** | Sales & Pricing | How do mileage, fuel type, and ownership affect used‑car prices? |
-| **CallCenter Data Analysis** | Operations | Are we meeting SLAs? Which channels underperform? |
-
-**Sample Views**  
-![Employee Dashboard](Analyzing%20Employee%20Trends/Analyzing%20Employee%20Trends%20Dashboard.png)  
-![Automotive Dashboard](Exploring%20Trends%20in%20the%20Automotive%20Industry/Exploring%20Trends%20in%20the%20Automotive%20Industry.png)  
+![Employee Dashboard](Analyzing%20Employee%20Trends/Analyzing%20Employee%20Trends%20Dashboard.png)
+![Automotive Dashboard](Exploring%20Trends%20in%20the%20Automotive%20Industry/Exploring%20Trends%20in%20the%20Automotive%20Industry.png)
 ![CallCenter Dashboard](CallCenter_Data%20Analysis/Callcenter%20Data%20Analysis.png)
 
 ---
 
-### 2. Machine Learning Models (Intelligence Layer)
+## The machine learning layer
 
-Two fully‑scripted Python pipelines inside `ml_models/` that generate, train, and export production‑ready outputs.
+### Attrition Prediction + Employee Segmentation
+`ml_models/workforce_ml_pipeline.py`
 
-#### 🔹 Attrition Prediction + Employee Segmentation  
-`workforce_ml_pipeline.py`
+A Random Forest classifier trained on 50,000 synthetic employee records, with satisfaction score, tenure, overtime, and commute distance coming out as the strongest predictors. Each employee gets an attrition probability, a binary prediction, and a cluster segment — so instead of guessing who's a flight risk, HR can point retention efforts at the top 5% and skip the rest.
 
-- **Random Forest Classifier** trained on 50,000 synthetic employee records.  
-- **Top Drivers:** Satisfaction score, years at company, overtime, commute distance.  
-- **Output:** Attrition probability, binary prediction, and cluster segment for each employee.  
-- **Business Value:** HR can now focus retention efforts on the top‑risk 5% of employees.
+### Call-Center Sentiment Analysis
+`ml_models/callcenter_sentiment.py`
 
-#### 🔹 NLP Sentiment Analysis on Call Transcripts  
-`callcenter_sentiment.py`
-
-- **VADER Sentiment Analyzer** applied to 10,000 synthetic call transcripts.  
-- **Accuracy:** ~92% agreement with ground truth.  
-- **Output:** Compound sentiment score and categorical sentiment (Positive/Neutral/Negative).  
-- **Business Value:** Pinpoint negative sentiment spikes and correlate them with operational metrics.
+VADER sentiment scoring applied to 10,000 synthetic call transcripts, landing around 92% agreement with ground-truth labels. Every call gets a compound sentiment score and a category (Positive / Neutral / Negative), making it possible to spot a sentiment dip before it shows up in a customer satisfaction survey three weeks later.
 
 ---
 
-### 3. Interactive Plotly Dashboards (Zero‑Install Insight)
+## Interactive dashboards, no server required
 
-Within `ml_dashboards/`, you’ll find fully autonomous HTML dashboards. **No Tableau, no server – just open the `.html` in any browser.**
+Inside `ml_dashboards/` are self-contained HTML dashboards — no Tableau license, no server, just open the file in a browser:
 
-- `attrition_dashboard.html` – Risk distribution, departmental risk comparison, feature importance.  
-- `employee_segments_dashboard.html` – Cluster profiles, satisfaction vs. attrition trade‑offs, demographics.  
-- `callcenter_sentiment_dashboard.html` – Sentiment distribution, compound score scatter, top complaint words.
+- `attrition_dashboard.html` — risk distribution, department-level comparisons, feature importance
+- `employee_segments_dashboard.html` — cluster profiles, satisfaction vs. attrition trade-offs
+- `callcenter_sentiment_dashboard.html` — sentiment distribution, compound score scatter, top complaint terms
 
-These dashboards are **regenerated on demand** by running:
+Regenerate them anytime with:
+
 ```bash
 cd ml_dashboards
 python generate_dashboards.py
@@ -114,76 +100,79 @@ python generate_dashboards.py
 
 ---
 
-## 🚀 Getting Started in 3 Minutes
+## Getting started
 
 ```bash
-# 1. Clone the repository
+# Clone the repo
 git clone https://github.com/sangramghose/Workforce-and-Industry-Trend-Analyzer.git
 cd Workforce-and-Industry-Trend-Analyzer
 
-# 2. Install Python dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 3. Run the ML pipelines (creates scored CSVs)
+# Run the ML pipelines (this generates the scored CSVs)
 python ml_models/workforce_ml_pipeline.py
 python ml_models/callcenter_sentiment.py
 
-# 4. Build the browser dashboards
+# Build the browser dashboards
 python ml_dashboards/generate_dashboards.py
-
-# 5. Explore!
-#    - Open any .html file in ml_dashboards/
-#    - Or connect the CSVs to Tableau / Power BI / Excel
 ```
+
+From there, open any `.html` file in `ml_dashboards/`, or point the CSVs at Tableau, Power BI, or Excel if that's more your workflow.
 
 ---
 
-## 📁 Repository Structure
+## Repository structure
 
 ```
 Workforce-and-Industry-Trend-Analyzer/
 │
-├── Analyzing Employee Trends/                 # Tableau workbook + image
-├── CallCenter_Data Analysis/                  # Tableau workbook + image
-├── Exploring Trends in the Automotive Industry/ # Tableau workbook + image
+├── Analyzing Employee Trends/                    # Tableau workbook + preview image
+├── CallCenter_Data Analysis/                     # Tableau workbook + preview image
+├── Exploring Trends in the Automotive Industry/   # Tableau workbook + preview image
 │
 ├── ml_models/
-│   ├── workforce_ml_pipeline.py               # Attrition prediction + clustering
-│   └── callcenter_sentiment.py                # NLP sentiment analysis
+│   ├── workforce_ml_pipeline.py                  # Attrition prediction + clustering
+│   └── callcenter_sentiment.py                   # NLP sentiment analysis
 │
 ├── ml_dashboards/
-│   ├── generate_dashboards.py                 # Builds Plotly HTML dashboards
+│   ├── generate_dashboards.py                    # Builds the Plotly HTML dashboards
 │   ├── attrition_dashboard.html
 │   ├── employee_segments_dashboard.html
 │   ├── callcenter_sentiment_dashboard.html
 │   └── README.md
 │
-├── workforce_with_ml_results.csv              # ML‑scored employee data
-├── callcenter_sentiment.csv                   # Sentiment‑scored call data
-├── requirements.txt                           # Python package list
+├── workforce_with_ml_results.csv                 # ML-scored employee data
+├── callcenter_sentiment.csv                      # Sentiment-scored call data
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## 💡 Business Impact (Simulated)
+## Tech stack
 
-| Metric | Before (Manual) | After (This Pipeline) |
-|--------|-----------------|------------------------|
-| Time to generate HR report | ~4 hours | **< 5 minutes (automated)** |
-| Attrition risk identification | Reactive (after resignation) | **Proactive (85% accuracy prediction)** |
-| Employee segmentation effort | None (one‑size‑fits‑all) | **4 data‑driven personas** |
-| Call‑center sentiment tracking | Ad‑hoc, manual sampling | **Instant, full‑coverage NLP** |
-| Report distribution | Manual email + attachment | **Scheduled Power Automate flow** |
+| Layer | Tools |
+|---|---|
+| Data processing | Python (Pandas, NumPy), SQL |
+| Machine learning | Scikit-learn (Random Forest, K-Means), NLTK (VADER) |
+| Visualization | Tableau, Plotly |
+| Automation | Power Automate, Outlook API |
+| Delivery | Plotly HTML, Tableau Server / Public |
 
 ---
 
-## 🛠️ Tech Stack
+## Notes on the data
 
-| Category | Tools & Libraries |
-|----------|-------------------|
-| **Data Processing** | Python (Pandas, NumPy), SQL |
-| **Machine Learning** | Scikit‑learn (Random Forest, K‑Means), NLTK (VADER) |
-| **Visualization** | Tableau, Plotly |
-| **Automation** | Power Automate, Outlook API |
-| **Dashboard Delivery** | Plotly HTML, Tableau Server / Public |
+The employee, call-center, and automotive datasets used here are synthetic, built to mirror realistic distributions rather than pulled from a live production system. The pipeline, models, and dashboards are fully functional — this is meant to demonstrate the end-to-end engineering, not report on a real company's actual attrition numbers.
+
+---
+
+## Contact
+
+**Sangram Keshari Ghose**
+Data Engineering | Python · SQL · ETL Pipelines · Power BI · Tableau
+
+[GitHub](https://github.com/sangram18-ghose) · [LinkedIn](https://linkedin.com/in/sangram20) · sangramkesharighose@gmail.com
+
+If this project is useful to you, a star on the repo is always appreciated. Questions or ideas — feel free to open an issue.
