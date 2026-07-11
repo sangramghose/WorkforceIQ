@@ -89,16 +89,28 @@ Each stage writes its output to disk before the next one picks it up, so any lay
 
 ## The three dashboards
 
-| Dashboard | What it's for | The question it answers |
-|---|---|---|
-| **Analyzing Employee Trends** | HR analytics | Where is turnover concentrated, and which groups are most engaged? |
-| **Automotive Industry Trends** | Sales & pricing | How do mileage, fuel type, and ownership history move used-car prices? |
-| **CallCenter Data Analysis** | Operations | Are SLAs being met, and which channels are quietly underperforming? |
-
-**Previews:**
+### 1. Analyzing Employee Trends
+Built for HR to look at the workforce from every angle that actually matters:
+- Employee distribution across business units, roles, age, gender, and education level
+- Satisfaction and engagement trends, with attrition broken down by demographic and job factors
+- Compensation analysis alongside core HR KPIs
 
 ![Employee Dashboard](Analyzing%20Employee%20Trends/Analyzing%20Employee%20Trends%20Dashboard.png)
+
+### 2. Exploring Trends in the Automotive Industry
+A used-car market lens applied to sales, pricing, and depreciation:
+- Sales trends and pricing broken down by fuel type, transmission, and ownership history
+- Mileage-age-price correlation, plus volume by dealer and owner type
+- A basic forward-looking price forecast
+
 ![Automotive Dashboard](Exploring%20Trends%20in%20the%20Automotive%20Industry/Exploring%20Trends%20in%20the%20Automotive%20Industry.png)
+
+### 3. CallCenter Data Analysis
+Where the sentiment model output actually gets used by a human:
+- Call volume, sentiment, and complaint-type breakdowns
+- Response time vs. SLA, compared across channels — phone, email, chat, web
+- Performance broken down by location
+
 ![CallCenter Dashboard](CallCenter_Data%20Analysis/Callcenter%20Data%20Analysis.png)
 
 ---
