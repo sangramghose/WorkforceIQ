@@ -18,6 +18,17 @@
 
 ---
 
+<div align="center">
+
+| | | |
+|---|---|---|
+| **50,000** employee records modeled | **10,000** call transcripts scored | **3** production dashboards |
+| **85%+** attrition prediction accuracy | **~92%** sentiment-label agreement | **4** behavioral employee segments |
+
+</div>
+
+---
+
 ### Table of contents
 
 1. [Why this exists](#why-this-exists)
@@ -31,8 +42,11 @@
 9. [Tech stack](#tech-stack)
 10. [Design decisions worth knowing about](#design-decisions-worth-knowing-about)
 11. [What I'd build next](#what-id-build-next)
-12. [Notes on the data](#notes-on-the-data)
-13. [Contact](#contact)
+12. [FAQ](#faq)
+13. [Notes on the data](#notes-on-the-data)
+14. [Contributing](#contributing)
+15. [License](#license)
+16. [Contact](#contact)
 
 ---
 
@@ -228,9 +242,37 @@ A few choices that weren't obvious at first but shaped the final structure:
 
 ---
 
+## FAQ
+
+**Is this real company data?**
+No — see [Notes on the data](#notes-on-the-data) below. The engineering, models, and dashboards are all real and fully functional; the underlying records are synthetic.
+
+**Can I run this without Tableau?**
+Yes. The `ml_dashboards/` folder has self-contained HTML dashboards that only need a browser — no Tableau license or server required.
+
+**Why Random Forest instead of a more advanced model?**
+Interpretability. HR stakeholders need to know *why* someone is flagged, not just get a black-box probability. Feature importance from Random Forest gives a defensible answer to "why is this person high-risk?" — see [Design decisions](#design-decisions-worth-knowing-about).
+
+**Can I plug in my own data?**
+Yes — replace the input CSVs with your own, keeping the same column structure the scripts expect, then re-run the pipeline as described in [Getting started](#getting-started).
+
+---
+
 ## Notes on the data
 
 The employee, call-center, and automotive datasets used here are synthetic, built to mirror realistic distributions rather than pulled from a live production system. The pipeline, models, and dashboards are fully functional — this is meant to demonstrate the end-to-end engineering, not report on a real company's actual attrition numbers.
+
+---
+
+## Contributing
+
+This started as a solo project, but it's structured to be extended. If you spot a bug, have an idea for a new model, or want to swap in a different dataset, issues and pull requests are welcome. For anything sizable, opening an issue first to talk through the approach is the fastest path to a merge.
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE) — use it, fork it, adapt it for your own portfolio or coursework, just keep the attribution.
 
 ---
 
