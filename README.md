@@ -1,6 +1,6 @@
 <div align="center">
 
-# WorkforceIQ: Workforce & Industry Trend Analyzer
+# WorkforceIQ: Workforce Analytics Platform
 
 **A full analytics pipeline — from raw data to predictive models to dashboards people actually open.**
 
