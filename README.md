@@ -1,6 +1,6 @@
 <div align="center">
 
-# Workforce & Industry Trend Analyzer
+# CogniVista - Workforce & Industry Trend Analyzer
 
 **A full analytics pipeline — from raw data to predictive models to dashboards people actually open.**
 
