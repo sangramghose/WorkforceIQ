@@ -23,7 +23,7 @@
 | | | |
 |---|---|---|
 | **50,000** employee records modeled | **10,000** call transcripts scored | **3** production dashboards |
-| **85%+** attrition prediction accuracy | **~92%** sentiment-label agreement | **4** behavioral employee segments |
+| **91%+** attrition prediction accuracy | **~92%** sentiment-label agreement | **4** behavioral employee segments |
 
 </div>
 
